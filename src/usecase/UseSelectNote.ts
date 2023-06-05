@@ -16,8 +16,5 @@ export const useSelectNote = () => {
     await fetch()
   }
 
-  return {
-    selectNote,
-    deleteNote
-  }
+  return { selectNote, deleteNote }
 }

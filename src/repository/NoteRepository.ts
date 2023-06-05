@@ -3,15 +3,18 @@ import type { Note } from '@/entities/Note'
 
 const note: Record<keyof Note, string> = {
   id: '&', // primary key
+  index: '',
   text: '',
   diagrams: '*', // array
+  template: '',
   createdAt: '',
   updatedAt: ''
 }
+
 const ver = 1
-const DBName = 'MermaidEditor'
+const dbName = 'MermaidEditor'
 const tableName = 'notes'
-const db = new Dexie(DBName)
+const db = new Dexie(dbName)
 
 export const noteRepository = {
   init() {

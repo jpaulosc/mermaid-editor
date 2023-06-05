@@ -79,9 +79,7 @@ const USE_NOTE_SINGLE: InjectionKey<ReturnType<typeof useNoteSingle>> = Symbol('
 
 export const provideUseNoteSingle = () => {
   const useObj = useNoteSingle()
-
   provide(USE_NOTE_SINGLE, useObj)
-
   return useObj
 }
 

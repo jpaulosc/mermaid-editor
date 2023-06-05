@@ -2,14 +2,17 @@ import { noteRepository } from '@/repository/NoteRepository'
 import type { Note } from '@/entities/Note'
 
 export const noteCollectionRepository = {
-  add(note: Note) {
+  async add(note: Note) {
+    const table = noteRepository.table()
+    const store = await table.where({ template: note.template }).toArray();
     note.id = crypto.randomUUID()
     note.createdAt = Date.now()
     note.updatedAt = Date.now()
-    return noteRepository.table().add(note)
+    note.index = store.length + 1
+    return table.add(note)
   },
   fetch() {
-    const order: keyof Note = 'updatedAt'
-    return noteRepository.table().reverse().sortBy(order)
+    const order: keyof Note = 'createdAt'
+    return noteRepository.table().toCollection().sortBy(order)
   }
 }

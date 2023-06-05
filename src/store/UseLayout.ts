@@ -2,31 +2,16 @@ import { computed, inject, type InjectionKey, provide, ref } from 'vue'
 
 const useLayout = () => {
   const isShowMenu = ref(true)
-  // const isShowCheatSheet = ref(false)
+  const darkMode = ref(true)
 
-  const showMenu = () => {
-    isShowMenu.value = true
-  }
-
-  const hideMenu = () => {
-    isShowMenu.value = false
-  }
-
-  // const showCheatSheet = () => {
-  //   isShowCheatSheet.value = true
-  // }
-
-  // const hideCheatSheet = () => {
-  //   isShowCheatSheet.value = false
-  // }
+  const showMenu = () => isShowMenu.value = true
+  const hideMenu = () => isShowMenu.value = false
 
   return {
     isShowMenu: computed(() => isShowMenu.value),
-    // isShowCheatSheet: computed(() => isShowCheatSheet.value),
+    darkMode,
     showMenu,
     hideMenu
-    // showCheatSheet,
-    // hideCheatSheet
   }
 }
 
@@ -34,9 +19,7 @@ const USE_LAYOUT: InjectionKey<ReturnType<typeof useLayout>> = Symbol('USE_LAYOU
 
 export const provideUseLayout = () => {
   const useObj = useLayout()
-
   provide(USE_LAYOUT, useObj)
-
   return useObj
 }
 

@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  overflow: hidden;
+}
+
+
+
+div.qwe .preview {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 6px;
+  transition: .3s opacity;
+  width: 200px;
+  border-radius: 4px;
+  min-height: 60px;
+  opacity: 0;
+  background: #eee;
+  z-index: 30;
+  pointer-events: none;
+}
+
+div.qwe:hover .preview {
+  opacity: 1;
+  transition-delay: .9s;
+}
