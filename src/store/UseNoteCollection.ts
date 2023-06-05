@@ -11,12 +11,10 @@ const useNoteCollection = () => {
     notes: []
   })
 
-  const fetch = async () => {
-    state.notes = await noteCollectionRepository.fetch()
-  }
+  const fetch = async () => state.notes = await noteCollectionRepository.fetch()
 
-  const add = async (text: Note['text']) => {
-    const id = await noteCollectionRepository.add({ ...getDefaultNote(), text })
+  const add = async (text: Note['text'], template:Note["template"]) => {
+    const id = await noteCollectionRepository.add({ ...getDefaultNote(), text, template })
     fetch()
     return id
   }
@@ -32,15 +30,12 @@ const USE_NOTE_COLLECTION: InjectionKey<ReturnType<typeof useNoteCollection>> = 
 
 export const provideUseNoteCollection = () => {
   const useObj = useNoteCollection()
-
   provide(USE_NOTE_COLLECTION, useObj)
-
   return useObj
 }
 
 export const injectUseNoteCollection = () => {
   const useObj = inject(USE_NOTE_COLLECTION)
-
   if (useObj) {
     return useObj
   } else {

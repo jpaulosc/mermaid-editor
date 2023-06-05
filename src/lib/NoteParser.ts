@@ -21,7 +21,5 @@ export const parser = (text: string) => {
     }
   })
 
-  return {
-    diagrams
-  }
+  return { diagrams }
 }

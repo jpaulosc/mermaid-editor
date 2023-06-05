@@ -25,9 +25,7 @@ const USE_NOTE_PREVIEW: InjectionKey<ReturnType<typeof useNotePreview>> = Symbol
 
 export const provideUseNotePreview = () => {
   const useObj = useNotePreview()
-
   provide(USE_NOTE_PREVIEW, useObj)
-
   return useObj
 }
 
